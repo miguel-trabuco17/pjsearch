@@ -1,0 +1,5 @@
+.screen {
+    width: 100vw;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, #7E56C2, #5E408F);
+}
