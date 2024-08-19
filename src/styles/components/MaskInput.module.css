@@ -71,6 +71,14 @@
         padding-left: 1vw;
         height: 8vh;
     }
+
+    .input:hover {
+        cursor: pointer;
+    }
+
+    .input:focus {
+        cursor: default;
+    }
     
     .submitButton {
         display: block;
