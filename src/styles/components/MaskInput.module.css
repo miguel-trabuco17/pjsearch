@@ -1,3 +1,4 @@
+/*Mobile Screens*/
 .submitArea {
     display: flex;
     flex-direction: column;
@@ -40,6 +41,7 @@
     font-weight: bold;
 }
 
+/*Tablet Screens*/
 @media screen and (min-width: 768px) {
     .submitArea {
         margin-top: 0vh;
@@ -57,6 +59,7 @@
     }
 }
 
+/*Computer Screens*/
 @media screen and (min-width: 1024px) {
     .inputBox {
         display: flex;
