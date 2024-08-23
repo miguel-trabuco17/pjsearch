@@ -99,6 +99,11 @@
         transition: background-color 0.5s
     }
 
+    .submitButton:disabled {
+        background-color: #7E56C2;
+        cursor: not-allowed;
+    }
+
     .mobileSubmitButton {
         display: none;
     }
