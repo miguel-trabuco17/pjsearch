@@ -10,6 +10,7 @@ export default function MaskInput() {
 	const [formatedCnpj, setFormatedCnpj] = useState('');
 	const [buttonState, setButtonState] = useState(false);
 	const [loadState, setLoadState] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	const handleInputChange = (event) => {
 		const inputValue = event.target.value;
@@ -23,14 +24,16 @@ export default function MaskInput() {
 		}
 	};
 
-	const handleSubmit = async () => {
+	const handleSubmit = () => {
 		setLoadState(true);
+		setErrorMessage('');
 		axios.get(`https://minhareceita.org/${formatedCnpj}`).then(response => {
 			setLoadState(false);
 			console.log(response);
 		}).catch(error => {
-			setLoadState(false);
 			console.log(error);
+			setLoadState(false);
+			setErrorMessage(error.response.data.message);
 		});
 	};
 
@@ -49,6 +52,7 @@ export default function MaskInput() {
 				<button className={styles.submitButton} disabled={!buttonState} onClick={handleSubmit}>Pesquisar</button>
 			</div>
 			<button className={styles.mobileSubmitButton} disabled={!buttonState} onClick={handleSubmit}>Pesquisar</button>
+			<p className={styles.errorMessage}>{errorMessage}</p>
 		</div>
 	);
 }

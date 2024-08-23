@@ -41,6 +41,14 @@
     font-weight: bold;
 }
 
+.errorMessage {
+    width: 70vw;
+    font-weight: bold;
+    color: rgb(221, 47, 47);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
 /*Tablet Screens*/
 @media screen and (min-width: 768px) {
     .submitArea {
@@ -56,6 +64,10 @@
 
     .mobileSubmitButton {
         width: 45vw;
+    }
+
+    .errorMessage {
+        font-size: 2rem;
     }
 }
 
@@ -106,5 +118,9 @@
 
     .mobileSubmitButton {
         display: none;
+    }
+
+    .errorMessage {
+        font-size: 1.4rem;
     }
 }
