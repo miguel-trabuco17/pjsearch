@@ -11,6 +11,7 @@ export default function MaskInput() {
 	const [buttonState, setButtonState] = useState(false);
 	const [loadState, setLoadState] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
+	const [cnpjData, setCnpjData] = useState({});
 
 	const handleInputChange = (event) => {
 		const inputValue = event.target.value;
@@ -24,12 +25,31 @@ export default function MaskInput() {
 		}
 	};
 
+	const formatResponseData = (data) => {
+		Object.keys(data).forEach((key) => {
+
+			const value = data[key];
+
+			if (value === null || value === '') {
+				data[key] = "n/a";
+			}
+
+			if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+				const [year, month, day] = value.split('-');
+				data[key] = `${day}/${month}/${year}`;
+			}
+		});
+
+		return data
+	}
+
 	const handleSubmit = () => {
 		setLoadState(true);
 		setErrorMessage('');
-		axios.get(`https://minhareceita.org/${formatedCnpj}`).then(response => {
+		axios.get(`https://minhareceita.org/${formatedCnpj}`).then( response => {
 			setLoadState(false);
-			console.log(response);
+			const formatedData = formatResponseData(response.data);
+			setCnpjData(formatedData);
 		}).catch(error => {
 			console.log(error);
 			setLoadState(false);
